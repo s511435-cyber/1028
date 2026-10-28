@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leo | 個人簡介 & 履歷</title>
-  <meta name="description" content="Leo 的個人科技感自我介紹與履歷網頁">
+  <meta name="description" content="Leo 的個人科技感自我介紹與履歷網頁 - Cyber Yellow 風格">
   <!-- Google Fonts: Orbitron & Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,23 +14,23 @@
 
   <style>
     /* ==========================================================================
-       CSS Variables & Reset
+       CSS Variables & Reset (Cyberpunk Tech Yellow Theme)
        ========================================================================== */
     :root {
-      --bg-primary: #050b14;
-      --bg-secondary: #0a1728;
-      --bg-card: rgba(13, 27, 46, 0.65);
-      --bg-card-hover: rgba(19, 41, 70, 0.85);
-      --border-color: rgba(0, 210, 255, 0.18);
-      --border-glow: rgba(0, 210, 255, 0.5);
+      --bg-primary: #0a0b0e;
+      --bg-secondary: #13151b;
+      --bg-card: rgba(22, 24, 32, 0.72);
+      --bg-card-hover: rgba(30, 33, 44, 0.88);
+      --border-color: rgba(252, 238, 10, 0.2);
+      --border-glow: rgba(252, 238, 10, 0.6);
       
-      --accent-cyan: #00f0ff;
-      --accent-blue: #0072ff;
-      --accent-deep-blue: #0b2545;
-      --accent-indigo: #4361ee;
-      --text-main: #f0f6fc;
-      --text-muted: #8ba2c0;
-      --text-dim: #546b89;
+      --accent-yellow: #fcee0a; /* Cyberpunk iconic bright yellow */
+      --accent-gold: #ffbe0b;
+      --accent-amber: #fb8500;
+      --accent-dark-yellow: #524700;
+      --text-main: #f8fafc;
+      --text-muted: #9ba3af;
+      --text-dim: #646b7a;
 
       --font-display: 'Orbitron', -apple-system, sans-serif;
       --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -76,8 +76,8 @@
       width: 100%;
       height: 100%;
       background-image: 
-        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(252, 238, 10, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(252, 238, 10, 0.04) 1px, transparent 1px);
       background-size: 50px 50px;
       z-index: -1;
       pointer-events: none;
@@ -88,7 +88,7 @@
       width: 600px;
       height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 114, 255, 0.15) 0%, rgba(0, 240, 255, 0.03) 40%, transparent 70%);
+      background: radial-gradient(circle, rgba(252, 238, 10, 0.12) 0%, rgba(255, 190, 11, 0.03) 40%, transparent 70%);
       top: 10%;
       right: -10%;
       z-index: -1;
@@ -107,7 +107,7 @@
       z-index: 100;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgba(5, 11, 20, 0.75);
+      background: rgba(10, 11, 14, 0.82);
       border-bottom: 1px solid var(--border-color);
       transition: var(--transition-smooth);
     }
@@ -137,8 +137,8 @@
       display: inline-block;
       width: 10px;
       height: 10px;
-      background-color: var(--accent-cyan);
-      box-shadow: 0 0 12px var(--accent-cyan);
+      background-color: var(--accent-yellow);
+      box-shadow: 0 0 12px var(--accent-yellow);
       border-radius: 2px;
       animation: pulse 2s infinite;
     }
@@ -161,7 +161,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
     }
 
     .nav-links a::after {
@@ -171,8 +171,8 @@
       left: 0;
       width: 0%;
       height: 2px;
-      background: var(--accent-cyan);
-      box-shadow: 0 0 8px var(--accent-cyan);
+      background: var(--accent-yellow);
+      box-shadow: 0 0 8px var(--accent-yellow);
       transition: var(--transition-smooth);
     }
 
@@ -186,19 +186,19 @@
       gap: 0.5rem;
       font-size: 0.8rem;
       font-family: var(--font-display);
-      color: var(--accent-cyan);
-      background: rgba(0, 240, 255, 0.08);
+      color: var(--accent-yellow);
+      background: rgba(252, 238, 10, 0.08);
       padding: 0.4rem 0.9rem;
       border-radius: 99px;
-      border: 1px solid rgba(0, 240, 255, 0.25);
+      border: 1px solid rgba(252, 238, 10, 0.28);
     }
 
     .status-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background-color: #00ff88;
-      box-shadow: 0 0 8px #00ff88;
+      background-color: var(--accent-yellow);
+      box-shadow: 0 0 8px var(--accent-yellow);
       animation: pulse 1.8s infinite;
     }
 
@@ -224,7 +224,7 @@
     .section-tag {
       font-family: var(--font-display);
       font-size: 0.85rem;
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
       text-transform: uppercase;
       letter-spacing: 2px;
       display: inline-flex;
@@ -243,7 +243,7 @@
       font-size: 2.2rem;
       font-weight: 800;
       letter-spacing: 1px;
-      background: linear-gradient(135deg, #ffffff 40%, var(--accent-cyan) 100%);
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-yellow) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -269,15 +269,15 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: rgba(0, 114, 255, 0.12);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      background: rgba(252, 238, 10, 0.1);
+      border: 1px solid rgba(252, 238, 10, 0.35);
       padding: 0.4rem 1.1rem;
       border-radius: 30px;
       font-family: var(--font-display);
       font-size: 0.85rem;
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
       margin-bottom: 1.5rem;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.12);
+      box-shadow: 0 0 20px rgba(252, 238, 10, 0.15);
     }
 
     .hero-title {
@@ -287,30 +287,30 @@
       line-height: 1.05;
       margin-bottom: 1.2rem;
       letter-spacing: 2px;
-      text-shadow: 0 0 40px rgba(0, 114, 255, 0.3);
+      text-shadow: 0 0 35px rgba(252, 238, 10, 0.25);
     }
 
     .hero-title .gradient-text {
-      background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan) 60%, var(--accent-blue) 100%);
+      background: linear-gradient(135deg, #ffffff 20%, var(--accent-yellow) 65%, var(--accent-gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-quote-box {
       position: relative;
-      background: rgba(10, 23, 40, 0.7);
-      border-left: 4px solid var(--accent-cyan);
+      background: rgba(18, 20, 26, 0.75);
+      border-left: 4px solid var(--accent-yellow);
       border-radius: 0 12px 12px 0;
       padding: 1.25rem 1.6rem;
       margin-bottom: 2.2rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(8px);
     }
 
     .hero-quote-label {
       font-size: 0.75rem;
       font-family: var(--font-display);
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
       text-transform: uppercase;
       letter-spacing: 1.5px;
       margin-bottom: 0.2rem;
@@ -356,30 +356,30 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-      color: #030811;
-      border: 1px solid var(--accent-cyan);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
-      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-yellow), var(--accent-gold));
+      color: #0a0b0e;
+      border: 1px solid var(--accent-yellow);
+      box-shadow: 0 0 25px rgba(252, 238, 10, 0.4);
+      font-weight: 800;
     }
 
     .btn-primary:hover {
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.65);
+      box-shadow: 0 0 40px rgba(252, 238, 10, 0.75);
       transform: translateY(-2px);
     }
 
     .btn-secondary {
-      background: rgba(13, 27, 46, 0.6);
+      background: rgba(22, 24, 32, 0.65);
       color: var(--text-main);
       border: 1px solid var(--border-color);
       backdrop-filter: blur(10px);
     }
 
     .btn-secondary:hover {
-      border-color: var(--accent-cyan);
-      background: rgba(19, 41, 70, 0.8);
+      border-color: var(--accent-yellow);
+      background: rgba(30, 33, 44, 0.85);
       transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+      box-shadow: 0 0 20px rgba(252, 238, 10, 0.25);
     }
 
     /* Hero Visual Card / Cyber HUD */
@@ -398,34 +398,34 @@
       border-radius: 18px;
       padding: 2rem;
       backdrop-filter: blur(16px);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 114, 255, 0.15);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(252, 238, 10, 0.12);
       overflow: hidden;
       transition: var(--transition-smooth);
     }
 
     .hud-card:hover {
       border-color: var(--border-glow);
-      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 240, 255, 0.25);
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.7), 0 0 35px rgba(252, 238, 10, 0.25);
     }
 
     .hud-corner {
       position: absolute;
       width: 16px;
       height: 16px;
-      border-color: var(--accent-cyan);
+      border-color: var(--accent-yellow);
       pointer-events: none;
     }
-    .hud-corner.tl { top: 10px; left: 10px; border-top: 2px solid var(--accent-cyan); border-left: 2px solid var(--accent-cyan); }
-    .hud-corner.tr { top: 10px; right: 10px; border-top: 2px solid var(--accent-cyan); border-right: 2px solid var(--accent-cyan); }
-    .hud-corner.bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--accent-cyan); border-left: 2px solid var(--accent-cyan); }
-    .hud-corner.br { bottom: 10px; right: 10px; border-bottom: 2px solid var(--accent-cyan); border-right: 2px solid var(--accent-cyan); }
+    .hud-corner.tl { top: 10px; left: 10px; border-top: 2px solid var(--accent-yellow); border-left: 2px solid var(--accent-yellow); }
+    .hud-corner.tr { top: 10px; right: 10px; border-top: 2px solid var(--accent-yellow); border-right: 2px solid var(--accent-yellow); }
+    .hud-corner.bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--accent-yellow); border-left: 2px solid var(--accent-yellow); }
+    .hud-corner.br { bottom: 10px; right: 10px; border-bottom: 2px solid var(--accent-yellow); border-right: 2px solid var(--accent-yellow); }
 
     .hud-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-bottom: 1.2rem;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.12);
+      border-bottom: 1px solid rgba(252, 238, 10, 0.15);
       margin-bottom: 1.5rem;
     }
 
@@ -444,21 +444,21 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      border: 2px dashed rgba(0, 240, 255, 0.4);
+      border: 2px dashed rgba(252, 238, 10, 0.45);
       animation: rotateRing 15s linear infinite;
     }
 
     .hud-avatar-inner {
       width: 96px;
       height: 96px;
-      background: radial-gradient(circle at 30% 30%, #1e4a7a, #091a2e);
+      background: radial-gradient(circle at 30% 30%, #3a3300, #16150a);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-cyan);
-      border: 2px solid var(--accent-cyan);
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+      color: var(--accent-yellow);
+      border: 2px solid var(--accent-yellow);
+      box-shadow: 0 0 25px rgba(252, 238, 10, 0.35);
     }
 
     .hud-stats-list {
@@ -471,10 +471,10 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.9rem;
-      background: rgba(5, 15, 28, 0.6);
+      background: rgba(12, 13, 17, 0.7);
       padding: 0.6rem 0.9rem;
       border-radius: 8px;
-      border-left: 3px solid var(--accent-blue);
+      border-left: 3px solid var(--accent-yellow);
     }
 
     .hud-stat-label {
@@ -484,7 +484,7 @@
     .hud-stat-value {
       font-family: var(--font-display);
       font-weight: 600;
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
     }
 
     /* ==========================================================================
@@ -514,7 +514,7 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+      background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
       transform: translateX(-100%);
       transition: transform 0.6s ease;
     }
@@ -523,7 +523,7 @@
       transform: translateY(-8px);
       border-color: var(--border-glow);
       background: var(--bg-card-hover);
-      box-shadow: 0 16px 36px rgba(0, 114, 255, 0.15), 0 0 20px rgba(0, 240, 255, 0.1);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 25px rgba(252, 238, 10, 0.18);
     }
 
     .interest-card:hover::before {
@@ -533,20 +533,20 @@
     .interest-icon-box {
       width: 60px;
       height: 60px;
-      background: rgba(0, 240, 255, 0.08);
-      border: 1px solid rgba(0, 240, 255, 0.25);
+      background: rgba(252, 238, 10, 0.08);
+      border: 1px solid rgba(252, 238, 10, 0.3);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
       margin-bottom: 1.5rem;
       transition: var(--transition-smooth);
     }
 
     .interest-card:hover .interest-icon-box {
-      background: rgba(0, 240, 255, 0.2);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+      background: rgba(252, 238, 10, 0.2);
+      box-shadow: 0 0 25px rgba(252, 238, 10, 0.45);
       transform: scale(1.08);
     }
 
@@ -584,7 +584,7 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.82rem;
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
       font-family: var(--font-display);
     }
 
@@ -604,7 +604,7 @@
       border-radius: 20px;
       padding: 2.5rem;
       backdrop-filter: blur(14px);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
       position: relative;
     }
 
@@ -612,11 +612,11 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      background: rgba(252, 238, 10, 0.1);
+      border: 1px solid rgba(252, 238, 10, 0.35);
       padding: 0.4rem 1rem;
       border-radius: 8px;
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
       font-family: var(--font-display);
       font-size: 0.85rem;
       margin-bottom: 1.2rem;
@@ -647,8 +647,8 @@
     }
 
     .mini-stat-card {
-      background: rgba(7, 18, 33, 0.6);
-      border: 1px solid rgba(0, 240, 255, 0.12);
+      background: rgba(14, 15, 20, 0.7);
+      border: 1px solid rgba(252, 238, 10, 0.15);
       border-radius: 10px;
       padding: 1rem;
       display: flex;
@@ -657,7 +657,7 @@
     }
 
     .mini-stat-icon {
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
     }
 
     .mini-stat-value {
@@ -715,7 +715,7 @@
 
     .skill-percent {
       font-family: var(--font-display);
-      color: var(--accent-cyan);
+      color: var(--accent-yellow);
     }
 
     .skill-progress-track {
@@ -729,10 +729,10 @@
 
     .skill-progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-yellow));
       border-radius: 99px;
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-      width: 0%; /* Animated via JS */
+      box-shadow: 0 0 12px rgba(252, 238, 10, 0.6);
+      width: 0%;
       transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -740,21 +740,21 @@
        Contact / Terminal Callout
        ========================================================================== */
     .contact-box {
-      background: linear-gradient(145deg, rgba(10, 25, 48, 0.8), rgba(5, 11, 20, 0.95));
+      background: linear-gradient(145deg, rgba(20, 22, 30, 0.85), rgba(10, 11, 14, 0.95));
       border: 1px solid var(--border-color);
       border-radius: 24px;
       padding: 4rem 3rem;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
     }
 
     .contact-glow-bg {
       position: absolute;
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(252, 238, 10, 0.15) 0%, transparent 70%);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -788,12 +788,12 @@
        Footer
        ========================================================================== */
     footer {
-      border-top: 1px solid rgba(0, 240, 255, 0.12);
+      border-top: 1px solid rgba(252, 238, 10, 0.15);
       padding: 2.5rem 0;
       text-align: center;
       color: var(--text-dim);
       font-size: 0.9rem;
-      background: #03070d;
+      background: #07070a;
     }
 
     .footer-content {
@@ -829,7 +829,6 @@
       filter: blur(0);
     }
 
-    /* Staggered transition delays */
     .delay-1 { transition-delay: 0.1s; }
     .delay-2 { transition-delay: 0.2s; }
     .delay-3 { transition-delay: 0.3s; }
@@ -929,7 +928,7 @@
         <div class="hero-content reveal">
           <div class="hero-tagline-badge">
             <i data-lucide="terminal" style="width: 14px; height: 14px;"></i>
-            // PERSONAL PORTFOLIO v1.0
+            // PERSONAL PORTFOLIO v1.1
           </div>
           <h1 class="hero-title">
             HELLO, I'M <br>
@@ -970,7 +969,7 @@
             <span class="hud-corner br"></span>
 
             <div class="hud-header">
-              <span style="font-family: var(--font-display); font-size: 0.8rem; color: var(--accent-cyan);">SYS_PROFILE</span>
+              <span style="font-family: var(--font-display); font-size: 0.8rem; color: var(--accent-yellow);">SYS_PROFILE</span>
               <span style="font-size: 0.75rem; color: var(--text-dim);">LOC: 25.0330° N</span>
             </div>
 
@@ -1022,7 +1021,7 @@
           </div>
           <h3 class="interest-title">
             Read
-            <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: normal;">/ 閱讀</span>
+            <span style="font-size: 0.85rem; color: var(--accent-yellow); font-weight: normal;">/ 閱讀</span>
           </h3>
           <p class="interest-desc">
             知識吸收與思維升級的核心模組。在文字與多元視角中解碼新世界，持續保持敏銳的洞察與專注力。
@@ -1041,7 +1040,7 @@
           </div>
           <h3 class="interest-title">
             Eat
-            <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: normal;">/ 美食</span>
+            <span style="font-size: 0.85rem; color: var(--accent-yellow); font-weight: normal;">/ 美食</span>
           </h3>
           <p class="interest-desc">
             高效能系統的能量補充機制。品味生活中的各種風味，以美食療癒心靈，充飽電量迎接下一個挑戰。
@@ -1060,7 +1059,7 @@
           </div>
           <h3 class="interest-title">
             Sleep
-            <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: normal;">/ 睡眠</span>
+            <span style="font-size: 0.85rem; color: var(--accent-yellow); font-weight: normal;">/ 睡眠</span>
           </h3>
           <p class="interest-desc">
             深層修復與系統重啟的關鍵程序。充足的休息釋放白天的負荷，讓每一次甦醒都能以 100% 狀態出發。
@@ -1131,7 +1130,7 @@
         <!-- Skill Stats / Progress Breakdown -->
         <div class="skill-bars-card reveal delay-2">
           <h4 class="skill-bars-title">
-            <i data-lucide="sliders" style="width: 18px; height: 18px; color: var(--accent-cyan);"></i>
+            <i data-lucide="sliders" style="width: 18px; height: 18px; color: var(--accent-yellow);"></i>
             足球特質指數與熟練度
           </h4>
 
@@ -1209,7 +1208,7 @@
         © 2026 LEO // ALL RIGHTS RESERVED.
       </div>
       <div style="font-size: 0.85rem; color: var(--text-dim);">
-        DESIGNED WITH <span style="color: var(--accent-cyan);">CYBER DEEP BLUE</span> AESTHETICS
+        DESIGNED WITH <span style="color: var(--accent-yellow);">CYBER NEON YELLOW</span> AESTHETICS
       </div>
     </div>
   </footer>
@@ -1244,7 +1243,7 @@
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // 2. Interactive Cyber Particle Background Canvas
+    // 2. Interactive Cyber Particle Background Canvas (Tech Yellow Glow)
     const canvas = document.getElementById('canvas-bg');
     const ctx = canvas.getContext('2d');
 
@@ -1270,7 +1269,7 @@
         this.size = Math.random() * 2 + 0.8;
         this.speedX = (Math.random() - 0.5) * 0.45;
         this.speedY = (Math.random() - 0.5) * 0.45;
-        this.alpha = Math.random() * 0.5 + 0.15;
+        this.alpha = Math.random() * 0.55 + 0.2;
       }
 
       update() {
@@ -1285,7 +1284,7 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 240, 255, ${this.alpha})`;
+        ctx.fillStyle = `rgba(252, 238, 10, ${this.alpha})`;
         ctx.fill();
       }
     }
@@ -1298,7 +1297,7 @@
     function animateParticles() {
       ctx.clearRect(0, 0, width, height);
 
-      // Connect nearby particles with subtle cyber lines
+      // Connect nearby particles with subtle cyber yellow/gold lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -1309,7 +1308,7 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 114, 255, ${0.15 * (1 - dist / 130)})`;
+            ctx.strokeStyle = `rgba(255, 190, 11, ${0.18 * (1 - dist / 130)})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
