@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leo | 個人簡介 & 履歷</title>
+  <meta name="description" content="Leo 的個人科技感自我介紹與履歷網頁">
+  <!-- Google Fonts: Orbitron & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ==========================================================================
+       CSS Variables & Reset
+       ========================================================================== */
+    :root {
+      --bg-primary: #050b14;
+      --bg-secondary: #0a1728;
+      --bg-card: rgba(13, 27, 46, 0.65);
+      --bg-card-hover: rgba(19, 41, 70, 0.85);
+      --border-color: rgba(0, 210, 255, 0.18);
+      --border-glow: rgba(0, 210, 255, 0.5);
+      
+      --accent-cyan: #00f0ff;
+      --accent-blue: #0072ff;
+      --accent-deep-blue: #0b2545;
+      --accent-indigo: #4361ee;
+      --text-main: #f0f6fc;
+      --text-muted: #8ba2c0;
+      --text-dim: #546b89;
+
+      --font-display: 'Orbitron', -apple-system, sans-serif;
+      --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Ambient Background & Grid */
+    #canvas-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .cyber-grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .radial-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 114, 255, 0.15) 0%, rgba(0, 240, 255, 0.03) 40%, transparent 70%);
+      top: 10%;
+      right: -10%;
+      z-index: -1;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       Navigation
+       ========================================================================== */
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(5, 11, 20, 0.75);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.35rem;
+      letter-spacing: 1.5px;
+    }
+
+    .logo-badge {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: var(--accent-cyan);
+      box-shadow: 0 0 12px var(--accent-cyan);
+      border-radius: 2px;
+      animation: pulse 2s infinite;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      transition: var(--transition-smooth);
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-family: var(--font-display);
+      color: var(--accent-cyan);
+      background: rgba(0, 240, 255, 0.08);
+      padding: 0.4rem 0.9rem;
+      border-radius: 99px;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #00ff88;
+      box-shadow: 0 0 8px #00ff88;
+      animation: pulse 1.8s infinite;
+    }
+
+    /* ==========================================================================
+       Layout & Container
+       ========================================================================== */
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 6.5rem 0;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+      text-align: left;
+    }
+
+    .section-tag {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-tag::before {
+      content: '>';
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ==========================================================================
+       Hero Section
+       ========================================================================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 8rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-tagline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(0, 114, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 0.4rem 1.1rem;
+      border-radius: 30px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.12);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 4.8rem;
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 40px rgba(0, 114, 255, 0.3);
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan) 60%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-quote-box {
+      position: relative;
+      background: rgba(10, 23, 40, 0.7);
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: 0 12px 12px 0;
+      padding: 1.25rem 1.6rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-quote-label {
+      font-size: 0.75rem;
+      font-family: var(--font-display);
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-quote-text {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      font-family: var(--font-display);
+      letter-spacing: 1px;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+      font-family: var(--font-body);
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      color: #030811;
+      border: 1px solid var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.65);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(13, 27, 46, 0.6);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(19, 41, 70, 0.8);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+    }
+
+    /* Hero Visual Card / Cyber HUD */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hud-card {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 2rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 114, 255, 0.15);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .hud-card:hover {
+      border-color: var(--border-glow);
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 240, 255, 0.25);
+    }
+
+    .hud-corner {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-color: var(--accent-cyan);
+      pointer-events: none;
+    }
+    .hud-corner.tl { top: 10px; left: 10px; border-top: 2px solid var(--accent-cyan); border-left: 2px solid var(--accent-cyan); }
+    .hud-corner.tr { top: 10px; right: 10px; border-top: 2px solid var(--accent-cyan); border-right: 2px solid var(--accent-cyan); }
+    .hud-corner.bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--accent-cyan); border-left: 2px solid var(--accent-cyan); }
+    .hud-corner.br { bottom: 10px; right: 10px; border-bottom: 2px solid var(--accent-cyan); border-right: 2px solid var(--accent-cyan); }
+
+    .hud-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.12);
+      margin-bottom: 1.5rem;
+    }
+
+    .hud-avatar-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hud-avatar-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px dashed rgba(0, 240, 255, 0.4);
+      animation: rotateRing 15s linear infinite;
+    }
+
+    .hud-avatar-inner {
+      width: 96px;
+      height: 96px;
+      background: radial-gradient(circle at 30% 30%, #1e4a7a, #091a2e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+    }
+
+    .hud-stats-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .hud-stat-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      background: rgba(5, 15, 28, 0.6);
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--accent-blue);
+    }
+
+    .hud-stat-label {
+      color: var(--text-muted);
+    }
+
+    .hud-stat-value {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--accent-cyan);
+    }
+
+    /* ==========================================================================
+       Interests Section (Read, Eat, Sleep)
+       ========================================================================== */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .interest-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.2rem 1.8rem;
+      backdrop-filter: blur(12px);
+      transition: var(--transition-smooth);
+      overflow: hidden;
+    }
+
+    .interest-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .interest-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-glow);
+      background: var(--bg-card-hover);
+      box-shadow: 0 16px 36px rgba(0, 114, 255, 0.15), 0 0 20px rgba(0, 240, 255, 0.1);
+    }
+
+    .interest-card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .interest-icon-box {
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      margin-bottom: 1.5rem;
+      transition: var(--transition-smooth);
+    }
+
+    .interest-card:hover .interest-icon-box {
+      background: rgba(0, 240, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+      transform: scale(1.08);
+    }
+
+    .interest-num {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .interest-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .interest-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .interest-meta {
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+      font-family: var(--font-display);
+    }
+
+    /* ==========================================================================
+       Skills Section (Football Focus)
+       ========================================================================== */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .skill-showcase-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .skill-badge-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      color: var(--accent-cyan);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-headline {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .skill-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1.8rem;
+      line-height: 1.7;
+    }
+
+    .radar-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .mini-stat-card {
+      background: rgba(7, 18, 33, 0.6);
+      border: 1px solid rgba(0, 240, 255, 0.12);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .mini-stat-icon {
+      color: var(--accent-cyan);
+    }
+
+    .mini-stat-value {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .mini-stat-name {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* Skill Progress Indicators */
+    .skill-bars-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(14px);
+    }
+
+    .skill-bars-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: 1.8rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skill-bar-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-bar-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .skill-name {
+      color: var(--text-main);
+    }
+
+    .skill-percent {
+      font-family: var(--font-display);
+      color: var(--accent-cyan);
+    }
+
+    .skill-progress-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 99px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skill-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      border-radius: 99px;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+      width: 0%; /* Animated via JS */
+      transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       Contact / Terminal Callout
+       ========================================================================== */
+    .contact-box {
+      background: linear-gradient(145deg, rgba(10, 25, 48, 0.8), rgba(5, 11, 20, 0.95));
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-glow-bg {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: blur(60px);
+    }
+
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .contact-desc {
+      color: var(--text-muted);
+      max-width: 550px;
+      margin: 0 auto 2.5rem auto;
+      font-size: 1.05rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       Footer
+       ========================================================================== */
+    footer {
+      border-top: 1px solid rgba(0, 240, 255, 0.12);
+      padding: 2.5rem 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      background: #03070d;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-left {
+      font-family: var(--font-display);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       Scroll Animations (Fade-in & Reveal)
+       ========================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      filter: blur(5px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Staggered transition delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* Keyframes */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    @keyframes rotateRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ==========================================================================
+       Responsive Design (Mobile Friendly)
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .hero-visual {
+        order: -1;
+      }
+      .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .skills-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 3.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .interests-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 3.2rem;
+      }
+      .radar-stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-box {
+        padding: 3rem 1.5rem;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      section {
+        padding: 4.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Animated Cyber Canvas -->
+  <canvas id="canvas-bg"></canvas>
+  <div class="cyber-grid-overlay"></div>
+  <div class="radial-glow"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-container">
+    <div class="nav-content">
+      <a href="#hero" class="brand-logo">
+        <span class="logo-badge"></span>
+        LEO.SYS
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">首頁</a></li>
+        <li><a href="#interests">三大日常</a></li>
+        <li><a href="#skills">核心技能</a></li>
+        <li><a href="#contact">聯絡方式</a></li>
+      </ul>
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span>ONLINE</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Hero Text -->
+        <div class="hero-content reveal">
+          <div class="hero-tagline-badge">
+            <i data-lucide="terminal" style="width: 14px; height: 14px;"></i>
+            // PERSONAL PORTFOLIO v1.0
+          </div>
+          <h1 class="hero-title">
+            HELLO, I'M <br>
+            <span class="gradient-text">LEO</span>
+          </h1>
+
+          <!-- User's Intro Quote: "good" -->
+          <div class="hero-quote-box">
+            <div class="hero-quote-label">
+              <i data-lucide="zap" style="width: 12px; height: 12px;"></i>
+              Personal Philosophy / 一句話介紹
+            </div>
+            <div class="hero-quote-text">" good "</div>
+          </div>
+
+          <p class="hero-desc">
+            化繁為簡，專注本質。在資訊洪流中維持良好節奏，以專注與熱情探索生活與運動的每一次極限發揮。
+          </p>
+
+          <div class="hero-actions">
+            <a href="#interests" class="btn btn-primary">
+              <i data-lucide="compass" style="width: 18px; height: 18px;"></i>
+              探索日常與興趣
+            </a>
+            <a href="#skills" class="btn btn-secondary">
+              <i data-lucide="activity" style="width: 18px; height: 18px;"></i>
+              專屬技能展示
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero HUD Card -->
+        <div class="hero-visual reveal delay-2">
+          <div class="hud-card">
+            <span class="hud-corner tl"></span>
+            <span class="hud-corner tr"></span>
+            <span class="hud-corner bl"></span>
+            <span class="hud-corner br"></span>
+
+            <div class="hud-header">
+              <span style="font-family: var(--font-display); font-size: 0.8rem; color: var(--accent-cyan);">SYS_PROFILE</span>
+              <span style="font-size: 0.75rem; color: var(--text-dim);">LOC: 25.0330° N</span>
+            </div>
+
+            <div class="hud-avatar-wrapper">
+              <div class="hud-avatar-ring"></div>
+              <div class="hud-avatar-inner">
+                <i data-lucide="user" style="width: 46px; height: 46px;"></i>
+              </div>
+            </div>
+
+            <div class="hud-stats-list">
+              <div class="hud-stat-item">
+                <span class="hud-stat-label">身份代號</span>
+                <span class="hud-stat-value">LEO</span>
+              </div>
+              <div class="hud-stat-item">
+                <span class="hud-stat-label">當前狀態</span>
+                <span class="hud-stat-value">GOOD (良好)</span>
+              </div>
+              <div class="hud-stat-item">
+                <span class="hud-stat-label">主要愛好</span>
+                <span class="hud-stat-value">Read / Eat / Sleep</span>
+              </div>
+              <div class="hud-stat-item">
+                <span class="hud-stat-label">運動領域</span>
+                <span class="hud-stat-value">Football (足球)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interests Section (Read, Eat, Sleep) -->
+  <section id="interests">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Core Routine & Hobbies</div>
+        <h2 class="section-title">三大生活支柱 // 興趣</h2>
+      </div>
+
+      <div class="interests-grid">
+        <!-- Card 1: Read -->
+        <div class="interest-card reveal delay-1">
+          <span class="interest-num">01</span>
+          <div class="interest-icon-box">
+            <i data-lucide="book-open" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="interest-title">
+            Read
+            <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: normal;">/ 閱讀</span>
+          </h3>
+          <p class="interest-desc">
+            知識吸收與思維升級的核心模組。在文字與多元視角中解碼新世界，持續保持敏銳的洞察與專注力。
+          </p>
+          <div class="interest-meta">
+            <span>TYPE: KNOWLEDGE</span>
+            <span>STATUS: ACTIVE</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Eat -->
+        <div class="interest-card reveal delay-2">
+          <span class="interest-num">02</span>
+          <div class="interest-icon-box">
+            <i data-lucide="utensils" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="interest-title">
+            Eat
+            <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: normal;">/ 美食</span>
+          </h3>
+          <p class="interest-desc">
+            高效能系統的能量補充機制。品味生活中的各種風味，以美食療癒心靈，充飽電量迎接下一個挑戰。
+          </p>
+          <div class="interest-meta">
+            <span>TYPE: ENERGY CHARGE</span>
+            <span>STATUS: DAILY</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Sleep -->
+        <div class="interest-card reveal delay-3">
+          <span class="interest-num">03</span>
+          <div class="interest-icon-box">
+            <i data-lucide="moon" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="interest-title">
+            Sleep
+            <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: normal;">/ 睡眠</span>
+          </h3>
+          <p class="interest-desc">
+            深層修復與系統重啟的關鍵程序。充足的休息釋放白天的負荷，讓每一次甦醒都能以 100% 狀態出發。
+          </p>
+          <div class="interest-meta">
+            <span>TYPE: RECOVERY</span>
+            <span>STATUS: OPTIMAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section (Football) -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Athletic & Passion</div>
+        <h2 class="section-title">擅長與探索技能 // 足球</h2>
+      </div>
+
+      <div class="skills-layout">
+        <!-- Football Showcase -->
+        <div class="skill-showcase-card reveal delay-1">
+          <div class="skill-badge-highlight">
+            <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
+            FIELD DYNAMICS // 綠茵場上的熱血
+          </div>
+          <h3 class="skill-headline">
+            Football (足球)
+          </h3>
+          <p class="skill-desc">
+            足球不僅是一項運動，更是球場上的戰略博弈。在速度、體能、球感與團隊默契的交織中，享受掌控球路、突破防線以及射門得分的每一刻純粹快感。
+          </p>
+
+          <div class="radar-stats-grid">
+            <div class="mini-stat-card">
+              <i data-lucide="crosshair" class="mini-stat-icon"></i>
+              <div>
+                <div class="mini-stat-value">精準判斷</div>
+                <div class="mini-stat-name">Field Vision</div>
+              </div>
+            </div>
+            <div class="mini-stat-card">
+              <i data-lucide="zap" class="mini-stat-icon"></i>
+              <div>
+                <div class="mini-stat-value">爆發敏捷</div>
+                <div class="mini-stat-name">Agility & Pace</div>
+              </div>
+            </div>
+            <div class="mini-stat-card">
+              <i data-lucide="shield" class="mini-stat-icon"></i>
+              <div>
+                <div class="mini-stat-value">持久體能</div>
+                <div class="mini-stat-name">Endurance</div>
+              </div>
+            </div>
+            <div class="mini-stat-card">
+              <i data-lucide="users" class="mini-stat-icon"></i>
+              <div>
+                <div class="mini-stat-value">團隊協作</div>
+                <div class="mini-stat-name">Teamwork</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skill Stats / Progress Breakdown -->
+        <div class="skill-bars-card reveal delay-2">
+          <h4 class="skill-bars-title">
+            <i data-lucide="sliders" style="width: 18px; height: 18px; color: var(--accent-cyan);"></i>
+            足球特質指數與熟練度
+          </h4>
+
+          <div class="skill-bar-item">
+            <div class="skill-info">
+              <span class="skill-name">場上熱忱 (Passion & Drive)</span>
+              <span class="skill-percent">98%</span>
+            </div>
+            <div class="skill-progress-track">
+              <div class="skill-progress-fill" data-progress="98%"></div>
+            </div>
+          </div>
+
+          <div class="skill-bar-item">
+            <div class="skill-info">
+              <span class="skill-name">跑動體能 (Stamina & Running)</span>
+              <span class="skill-percent">90%</span>
+            </div>
+            <div class="skill-progress-track">
+              <div class="skill-progress-fill" data-progress="90%"></div>
+            </div>
+          </div>
+
+          <div class="skill-bar-item">
+            <div class="skill-info">
+              <span class="skill-name">戰術意識 (Tactical Awareness)</span>
+              <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-progress-track">
+              <div class="skill-progress-fill" data-progress="85%"></div>
+            </div>
+          </div>
+
+          <div class="skill-bar-item">
+            <div class="skill-info">
+              <span class="skill-name">控球與傳球 (Ball Control & Pass)</span>
+              <span class="skill-percent">88%</span>
+            </div>
+            <div class="skill-progress-track">
+              <div class="skill-progress-fill" data-progress="88%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Call to Action -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box reveal">
+        <div class="contact-glow-bg"></div>
+        <h2 class="contact-title">CONNECT WITH LEO</h2>
+        <p class="contact-desc">
+          無論是足球交流、好書推薦，或是聊聊有趣的生活日常，都歡迎隨時建立連線。
+        </p>
+        <div class="contact-links">
+          <a href="mailto:contact@leo.dev" class="btn btn-primary">
+            <i data-lucide="mail" style="width: 18px; height: 18px;"></i>
+            傳送訊息給 Leo
+          </a>
+          <a href="#hero" class="btn btn-secondary">
+            <i data-lucide="arrow-up" style="width: 18px; height: 18px;"></i>
+            返回頂部
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        © 2026 LEO // ALL RIGHTS RESERVED.
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-dim);">
+        DESIGNED WITH <span style="color: var(--accent-cyan);">CYBER DEEP BLUE</span> AESTHETICS
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: Lucide Icons, Canvas Cyber Particles & Scroll Observer -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Scroll Fade-in Animation (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+    const skillProgressFills = document.querySelectorAll('.skill-progress-fill');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+
+          // If skill card is visible, trigger progress bar fill
+          if (entry.target.contains(document.querySelector('.skill-progress-fill')) || entry.target.classList.contains('skill-bars-card')) {
+            skillProgressFills.forEach(bar => {
+              const targetWidth = bar.getAttribute('data-progress');
+              bar.style.width = targetWidth;
+            });
+          }
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // 2. Interactive Cyber Particle Background Canvas
+    const canvas = document.getElementById('canvas-bg');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2 + 0.8;
+        this.speedX = (Math.random() - 0.5) * 0.45;
+        this.speedY = (Math.random() - 0.5) * 0.45;
+        this.alpha = Math.random() * 0.5 + 0.15;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 240, 255, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    const particleCount = Math.min(Math.floor(window.innerWidth / 18), 70);
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Connect nearby particles with subtle cyber lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 114, 255, ${0.15 * (1 - dist / 130)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+  </script>
+</body>
+</html>
